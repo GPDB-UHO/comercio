@@ -15,6 +15,7 @@ class Bodega(models.Model):
     n_1_6 = models.IntegerField()
     n_7_30 = models.IntegerField()
     details = JSONField()
+    oficoda = models.ForeignKey("Oficoda", on_delete=models.CASCADE)
 
 
 class Distribucion(models.Model):
