@@ -1,6 +1,10 @@
 from django.urls import include, path
 
 from rest_framework import routers
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 from .viewsets import (
     OficodaViewset,
@@ -17,8 +21,9 @@ router.register(r"bodega", BodegaViewset)
 router.register(r"distribucion", DistribucionViewset)
 router.register(r"producto", ProductoViewset)
 
-app_name = 'api'
+app_name = "api"
 urlpatterns = [
     path("", include(router.urls)),
-    path("auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("token/", TokenObtainPairView.as_view(), name="token-obtain"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
 ]
