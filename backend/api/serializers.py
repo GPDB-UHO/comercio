@@ -3,7 +3,17 @@ from rest_framework import serializers
 from .models import Oficoda, Reparto, Bodega, Distribucion, Producto
 
 
-class BodegaSerializer(serializers.ModelSerializer):
+class ProductoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Producto
+        fields = [
+            "id",
+            "nombre",
+            "notas",
+        ]
+
+
+class BodegaSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bodega
         fields = [
@@ -17,8 +27,8 @@ class BodegaSerializer(serializers.ModelSerializer):
         ]
 
 
-class DistribucionSerializer(serializers.ModelSerializer):
-    bodegas_detalles = BodegaSerializer(source="bodegas", many=True, read_only=True)
+class DistribucionSimpleSerializer(serializers.ModelSerializer):
+    producto = ProductoSerializer(read_only=True)
 
     class Meta:
         model = Distribucion
@@ -30,18 +40,29 @@ class DistribucionSerializer(serializers.ModelSerializer):
             "fecha",
             "fecha_creacion",
             "producto",
-            "bodegas",
-            "bodegas_detalles",
         ]
 
 
-class ProductoSerializer(serializers.ModelSerializer):
+class BodegaSerializer(BodegaSimpleSerializer):
+    distribuciones = DistribucionSimpleSerializer(many=True, read_only=True)
+
     class Meta:
-        model = Producto
+        model = Bodega
+        fields = BodegaSimpleSerializer.Meta.fields + [
+            "distribuciones",
+        ]
+
+
+class DistribucionSerializer(DistribucionSimpleSerializer):
+    bodegas_detalles = BodegaSimpleSerializer(
+        source="bodegas", many=True, read_only=True
+    )
+
+    class Meta:
+        model = Distribucion
         fields = [
-            "id",
-            "nombre",
-            "notas",
+            "bodegas",
+            "bodegas_detalles",
         ]
 
 

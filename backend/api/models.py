@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
-
 class Oficoda(models.Model):
     nombre = models.CharField(max_length=255)
     reparto = models.OneToOneField("Reparto", on_delete=models.CASCADE)
@@ -47,7 +46,7 @@ class Distribucion(models.Model):
     producto = models.ForeignKey(
         "Producto", on_delete=models.CASCADE, related_name="productos"
     )
-    bodegas = models.ManyToManyField("Bodega")
+    bodegas = models.ManyToManyField("Bodega", related_name="distribuciones")
 
     def __str__(self):
         return "{} - {} - {}".format(self.producto.nombre, self.cantidad, self.fecha)

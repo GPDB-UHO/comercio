@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from rest_framework import viewsets, permissions
 
 from .models import Oficoda, Reparto, Bodega, Distribucion, Producto
@@ -23,7 +24,9 @@ class RepartoViewset(viewsets.ReadOnlyModelViewSet):
 
 
 class BodegaViewset(viewsets.ReadOnlyModelViewSet):
-    queryset = Bodega.objects.all()
+    queryset = Bodega.objects.all().prefetch_related(
+        Prefetch("distribuciones", queryset=Distribucion.objects.order_by("fecha"))
+    )
     serializer_class = BodegaSerializer
     permission_classes = [permissions.IsAuthenticated]
 
