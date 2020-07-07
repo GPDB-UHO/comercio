@@ -6,9 +6,15 @@ class Oficoda(models.Model):
     nombre = models.CharField(max_length=255)
     reparto = models.OneToOneField("Reparto", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{} - {}".format(self.reparto.nombre, self.nombre)
+
 
 class Reparto(models.Model):
     nombre = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nombre
 
 
 class Bodega(models.Model):
@@ -19,6 +25,9 @@ class Bodega(models.Model):
     details = JSONField(default=dict, blank=True)
     oficoda = models.ForeignKey("Oficoda", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{} - {}".format(self.unidad, self.nombre)
+
 
 class Distribucion(models.Model):
     cantidad = models.IntegerField()
@@ -27,8 +36,14 @@ class Distribucion(models.Model):
     producto = models.ForeignKey("Producto", on_delete=models.CASCADE)
     bodegas = models.ManyToManyField("Bodega")
 
+    def __str__(self):
+        return "{} - {} - {}".format(self.producto.nombre, self.cantidad, self.fecha)
+
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
     notas = models.TextField()
+
+    def __str__(self):
+        return self.nombre
 
