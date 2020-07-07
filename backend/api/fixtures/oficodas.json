@@ -1,0 +1,82 @@
+[
+  {
+    "model": "api.oficoda",
+    "pk": 1,
+    "fields": { "nombre": "11-23", "reparto": 1 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 2,
+    "fields": { "nombre": "11-24", "reparto": 2 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 3,
+    "fields": { "nombre": "11-25", "reparto": 3 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 4,
+    "fields": { "nombre": "11-26", "reparto": 4 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 5,
+    "fields": { "nombre": "11-27", "reparto": 5 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 6,
+    "fields": { "nombre": "11-28", "reparto": 6 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 7,
+    "fields": { "nombre": "11-30", "reparto": 7 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 8,
+    "fields": { "nombre": "11-31", "reparto": 8 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 9,
+    "fields": { "nombre": "11-32", "reparto": 9 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 10,
+    "fields": { "nombre": "11-33", "reparto": 10 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 11,
+    "fields": { "nombre": "11-34", "reparto": 11 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 12,
+    "fields": { "nombre": "11-35", "reparto": 12 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 13,
+    "fields": { "nombre": "11-36", "reparto": 13 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 14,
+    "fields": { "nombre": "11-37", "reparto": 14 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 15,
+    "fields": { "nombre": "11-38", "reparto": 15 }
+  },
+  {
+    "model": "api.oficoda",
+    "pk": 16,
+    "fields": { "nombre": "11-83", "reparto": 16 }
+  }
+]

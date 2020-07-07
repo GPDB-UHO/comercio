@@ -1,0 +1,34 @@
+[
+  { "model": "api.reparto", "pk": 1, "fields": { "nombre": "San andres" } },
+  { "model": "api.reparto", "pk": 2, "fields": { "nombre": "Distrito Lenin" } },
+  { "model": "api.reparto", "pk": 3, "fields": { "nombre": "Alcides Pino" } },
+  {
+    "model": "api.reparto",
+    "pk": 4,
+    "fields": { "nombre": "Centro ciudad norte" }
+  },
+  { "model": "api.reparto", "pk": 5, "fields": { "nombre": "Vista Alegre" } },
+  { "model": "api.reparto", "pk": 6, "fields": { "nombre": "Alex urquiola" } },
+  { "model": "api.reparto", "pk": 7, "fields": { "nombre": "Pueblo Nuevo" } },
+  {
+    "model": "api.reparto",
+    "pk": 8,
+    "fields": { "nombre": "Pedro diaz coello" }
+  },
+  { "model": "api.reparto", "pk": 9, "fields": { "nombre": "Yareyal" } },
+  { "model": "api.reparto", "pk": 10, "fields": { "nombre": "Edecio Perez" } },
+  { "model": "api.reparto", "pk": 11, "fields": { "nombre": "Pedernales" } },
+  { "model": "api.reparto", "pk": 12, "fields": { "nombre": "San Rafael" } },
+  {
+    "model": "api.reparto",
+    "pk": 13,
+    "fields": { "nombre": "La Cuaba zona industrial" }
+  },
+  { "model": "api.reparto", "pk": 14, "fields": { "nombre": "Aguas Claras" } },
+  {
+    "model": "api.reparto",
+    "pk": 15,
+    "fields": { "nombre": "Sao Arriba y el Purial" }
+  },
+  { "model": "api.reparto", "pk": 16, "fields": { "nombre": "Rpto Harlem" } }
+]
