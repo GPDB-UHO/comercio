@@ -20,6 +20,8 @@ class BodegaSerializer(serializers.ModelSerializer):
         model = Bodega
         fields = [
             "id",
+            "nombre",
+            "unidad",
             "n_1_6",
             "n_7_30",
             "details",

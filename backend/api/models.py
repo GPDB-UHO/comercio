@@ -12,9 +12,11 @@ class Reparto(models.Model):
 
 
 class Bodega(models.Model):
+    unidad = models.CharField(max_length=32)
+    nombre = models.CharField(max_length=120)
     n_1_6 = models.IntegerField()
     n_7_30 = models.IntegerField()
-    details = JSONField()
+    details = JSONField(default=dict, blank=True)
     oficoda = models.ForeignKey("Oficoda", on_delete=models.CASCADE)
 
 
