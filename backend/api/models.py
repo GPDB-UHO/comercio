@@ -22,18 +22,31 @@ class Bodega(models.Model):
     nombre = models.CharField(max_length=120)
     n_1_6 = models.IntegerField()
     n_7_30 = models.IntegerField()
-    details = JSONField(default=dict, blank=True)
-    oficoda = models.ForeignKey("Oficoda", on_delete=models.CASCADE)
+    extra = JSONField(default=dict, blank=True)
+    oficoda = models.ForeignKey(
+        "Oficoda", on_delete=models.CASCADE, related_name="bodegas"
+    )
 
     def __str__(self):
         return "{} - {}".format(self.unidad, self.nombre)
 
+    @property
+    def conteo_productos(self):
+        # 2 productos para las de mas de 6
+        return self.n_1_6 * 1 + self.n_7_30 * 2
+
 
 class Distribucion(models.Model):
     cantidad = models.IntegerField()
+
+    repartido = models.IntegerField(editable=False, default=0)
+    sobrante = models.IntegerField(editable=False, default=0)
+
     fecha = models.DateField()
-    fecha_creacion = models.DateField(auto_now=True)
-    producto = models.ForeignKey("Producto", on_delete=models.CASCADE)
+    fecha_creacion = models.DateTimeField(auto_now=True)
+    producto = models.ForeignKey(
+        "Producto", on_delete=models.CASCADE, related_name="productos"
+    )
     bodegas = models.ManyToManyField("Bodega")
 
     def __str__(self):
@@ -42,7 +55,7 @@ class Distribucion(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
-    notas = models.TextField()
+    notas = models.TextField(blank=True)
 
     def __str__(self):
         return self.nombre
