@@ -31,7 +31,7 @@ class Bodega(models.Model):
 
     @property
     def conteo_productos(self):
-        # 2 productos para las de mas de 6
+        # 2 productos para las mayores que 6
         return self.n_1_6 * 1 + self.n_7_30 * 2
 
 
