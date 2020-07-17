@@ -156,7 +156,7 @@
     "pk": 4,
     "fields": {
       "unidad": "3668",
-      "nombre": "La Bre\u00c3\u00b1osa",
+      "nombre": "La Breñosa",
       "n_1_6": 94,
       "n_7_30": 1,
       "extra": {
@@ -1220,7 +1220,7 @@
     "pk": 32,
     "fields": {
       "unidad": "4800",
-      "nombre": "Merc. Holgu\u00c3\u00adn",
+      "nombre": "Merc. Holguín",
       "n_1_6": 1134,
       "n_7_30": 57,
       "extra": {
@@ -1524,7 +1524,7 @@
     "pk": 40,
     "fields": {
       "unidad": "4295",
-      "nombre": "El Mamb\u00c3\u00ad",
+      "nombre": "El Mambí",
       "n_1_6": 335,
       "n_7_30": 29,
       "extra": {
@@ -1714,7 +1714,7 @@
     "pk": 45,
     "fields": {
       "unidad": "3128",
-      "nombre": "La Nueva Creaci\u00c3\u00b3n",
+      "nombre": "La Nueva Creación",
       "n_1_6": 266,
       "n_7_30": 66,
       "extra": {
@@ -1828,7 +1828,7 @@
     "pk": 48,
     "fields": {
       "unidad": "4355",
-      "nombre": "La Monta\u00c3\u00b1a",
+      "nombre": "La Montaña",
       "n_1_6": 359,
       "n_7_30": 28,
       "extra": {
@@ -1866,7 +1866,7 @@
     "pk": 49,
     "fields": {
       "unidad": "4356",
-      "nombre": "El Tri\u00c3\u00a1ngulo",
+      "nombre": "El Triángulo",
       "n_1_6": 288,
       "n_7_30": 32,
       "extra": {
@@ -2360,7 +2360,7 @@
     "pk": 62,
     "fields": {
       "unidad": "3002",
-      "nombre": "El Para\u00c3\u00adso",
+      "nombre": "El Paraíso",
       "n_1_6": 324,
       "n_7_30": 54,
       "extra": {
@@ -2398,7 +2398,7 @@
     "pk": 63,
     "fields": {
       "unidad": "4363",
-      "nombre": "El Cari\u00c3\u00b1o",
+      "nombre": "El Cariño",
       "n_1_6": 968,
       "n_7_30": 97,
       "extra": {
@@ -2512,7 +2512,7 @@
     "pk": 66,
     "fields": {
       "unidad": "3034",
-      "nombre": "M\u00c3\u00a1rtires de Holgu\u00c3\u00adn",
+      "nombre": "Mártires de Holguín",
       "n_1_6": 221,
       "n_7_30": 10,
       "extra": {
@@ -2968,7 +2968,7 @@
     "pk": 78,
     "fields": {
       "unidad": "4331",
-      "nombre": "La Cari\u00c3\u00b1osa",
+      "nombre": "La Cariñosa",
       "n_1_6": 184,
       "n_7_30": 7,
       "extra": {
@@ -3424,7 +3424,7 @@
     "pk": 90,
     "fields": {
       "unidad": "3008",
-      "nombre": "La Quemaz\u00c3\u00b3n",
+      "nombre": "La Quemazón",
       "n_1_6": 572,
       "n_7_30": 10,
       "extra": {
@@ -3538,7 +3538,7 @@
     "pk": 93,
     "fields": {
       "unidad": "4335",
-      "nombre": "La Orqu\u00c3\u00addea",
+      "nombre": "La Orquídea",
       "n_1_6": 468,
       "n_7_30": 60,
       "extra": {
@@ -3918,7 +3918,7 @@
     "pk": 103,
     "fields": {
       "unidad": "4306",
-      "nombre": "El Yucat\u00c3\u00a1n",
+      "nombre": "El Yucatán",
       "n_1_6": 265,
       "n_7_30": 26,
       "extra": {
@@ -3956,7 +3956,7 @@
     "pk": 104,
     "fields": {
       "unidad": "4321",
-      "nombre": "La Campi\u00c3\u00b1a",
+      "nombre": "La Campiña",
       "n_1_6": 181,
       "n_7_30": 9,
       "extra": {
@@ -5020,7 +5020,7 @@
     "pk": 132,
     "fields": {
       "unidad": "4271",
-      "nombre": "El Cord\u00c3\u00b3n de Oro",
+      "nombre": "El Cordón de Oro",
       "n_1_6": 178,
       "n_7_30": 9,
       "extra": {
@@ -5324,7 +5324,7 @@
     "pk": 140,
     "fields": {
       "unidad": "4176",
-      "nombre": "El Clavel\u00c3\u00b3n",
+      "nombre": "El Clavelón",
       "n_1_6": 477,
       "n_7_30": 23,
       "extra": {
@@ -5780,7 +5780,7 @@
     "pk": 152,
     "fields": {
       "unidad": "4226",
-      "nombre": "La Creaci\u00c3\u00b3n",
+      "nombre": "La Creación",
       "n_1_6": 480,
       "n_7_30": 69,
       "extra": {
@@ -5856,7 +5856,7 @@
     "pk": 154,
     "fields": {
       "unidad": "3024",
-      "nombre": "El Cari\u00c3\u00b1o",
+      "nombre": "El Cariño",
       "n_1_6": 535,
       "n_7_30": 59,
       "extra": {
@@ -6122,7 +6122,7 @@
     "pk": 161,
     "fields": {
       "unidad": "4209",
-      "nombre": "La Peque\u00c3\u00b1a",
+      "nombre": "La Pequeña",
       "n_1_6": 248,
       "n_7_30": 14,
       "extra": {
@@ -6768,7 +6768,7 @@
     "pk": 178,
     "fields": {
       "unidad": "4195",
-      "nombre": "El Tit\u00c3\u00a1n",
+      "nombre": "El Titán",
       "n_1_6": 607,
       "n_7_30": 57,
       "extra": {
@@ -6882,7 +6882,7 @@
     "pk": 181,
     "fields": {
       "unidad": "3011",
-      "nombre": "El Mi\u00c3\u00b1o",
+      "nombre": "El Miño",
       "n_1_6": 246,
       "n_7_30": 20,
       "extra": {
@@ -7034,7 +7034,7 @@
     "pk": 185,
     "fields": {
       "unidad": "4804",
-      "nombre": "Vict. de Gir\u00c3\u00b3n",
+      "nombre": "Vict. de Girón",
       "n_1_6": 1976,
       "n_7_30": 53,
       "extra": {
@@ -7528,7 +7528,7 @@
     "pk": 198,
     "fields": {
       "unidad": "3037",
-      "nombre": "El Salm\u00c3\u00b3n",
+      "nombre": "El Salmón",
       "n_1_6": 431,
       "n_7_30": 16,
       "extra": {
@@ -7718,7 +7718,7 @@
     "pk": 203,
     "fields": {
       "unidad": "4408",
-      "nombre": "Tom\u00c3\u00ad # 1",
+      "nombre": "Tomí # 1",
       "n_1_6": 43,
       "n_7_30": 7,
       "extra": {
@@ -7870,7 +7870,7 @@
     "pk": 207,
     "fields": {
       "unidad": "3671",
-      "nombre": "R\u00c3\u00ado Colorado",
+      "nombre": "Río Colorado",
       "n_1_6": 80,
       "n_7_30": 1,
       "extra": {
@@ -7908,7 +7908,7 @@
     "pk": 208,
     "fields": {
       "unidad": "3515",
-      "nombre": "Cruce S.Andr\u00c3\u00a9s",
+      "nombre": "Cruce S.Andrés",
       "n_1_6": 254,
       "n_7_30": 19,
       "extra": {
@@ -7984,7 +7984,7 @@
     "pk": 210,
     "fields": {
       "unidad": "3669",
-      "nombre": "La Bre\u00c3\u00b1osa",
+      "nombre": "La Breñosa",
       "n_1_6": 27,
       "n_7_30": 0,
       "extra": {
@@ -8060,7 +8060,7 @@
     "pk": 212,
     "fields": {
       "unidad": "3673",
-      "nombre": "Las Caba\u00c3\u00b1as",
+      "nombre": "Las Cabañas",
       "n_1_6": 130,
       "n_7_30": 3,
       "extra": {
@@ -8402,7 +8402,7 @@
     "pk": 221,
     "fields": {
       "unidad": "4255",
-      "nombre": "La Alegr\u00c3\u00ada",
+      "nombre": "La Alegría",
       "n_1_6": 1027,
       "n_7_30": 123,
       "extra": {
@@ -8820,7 +8820,7 @@
     "pk": 232,
     "fields": {
       "unidad": "4419",
-      "nombre": "G\u00c3\u00bcirabo",
+      "nombre": "Güirabo",
       "n_1_6": 133,
       "n_7_30": 12,
       "extra": {
@@ -9162,7 +9162,7 @@
     "pk": 241,
     "fields": {
       "unidad": "4415",
-      "nombre": "G\u00c3\u00bcirabito",
+      "nombre": "Güirabito",
       "n_1_6": 257,
       "n_7_30": 38,
       "extra": {
@@ -9238,7 +9238,7 @@
     "pk": 243,
     "fields": {
       "unidad": "4701",
-      "nombre": "Ca\u00c3\u00b1ad\u00c3\u00b3n",
+      "nombre": "Cañadón",
       "n_1_6": 144,
       "n_7_30": 19,
       "extra": {
@@ -9618,7 +9618,7 @@
     "pk": 253,
     "fields": {
       "unidad": "3707",
-      "nombre": "Guayac\u00c3\u00a1n",
+      "nombre": "Guayacán",
       "n_1_6": 92,
       "n_7_30": 1,
       "extra": {
@@ -10036,7 +10036,7 @@
     "pk": 264,
     "fields": {
       "unidad": "4809",
-      "nombre": "La Uni\u00c3\u00b3n",
+      "nombre": "La Unión",
       "n_1_6": 110,
       "n_7_30": 6,
       "extra": {
@@ -10188,7 +10188,7 @@
     "pk": 268,
     "fields": {
       "unidad": "4387",
-      "nombre": "Guabiney\u00c3\u00b3n # 1",
+      "nombre": "Guabineyón # 1",
       "n_1_6": 84,
       "n_7_30": 2,
       "extra": {
@@ -10226,7 +10226,7 @@
     "pk": 269,
     "fields": {
       "unidad": "4388",
-      "nombre": "Guabiney\u00c3\u00b3n # 2",
+      "nombre": "Guabineyón # 2",
       "n_1_6": 104,
       "n_7_30": 1,
       "extra": {
@@ -10416,7 +10416,7 @@
     "pk": 274,
     "fields": {
       "unidad": "3381",
-      "nombre": "Pe\u00c3\u00b1a Prieta",
+      "nombre": "Peña Prieta",
       "n_1_6": 26,
       "n_7_30": 4,
       "extra": {
