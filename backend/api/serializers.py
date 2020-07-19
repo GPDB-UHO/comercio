@@ -28,7 +28,7 @@ class BodegaSimpleSerializer(serializers.ModelSerializer):
 
 
 class DistribucionSimpleSerializer(serializers.ModelSerializer):
-    producto = ProductoSerializer(read_only=True)
+    producto_detalles = ProductoSerializer(source="producto", read_only=True)
 
     class Meta:
         model = Distribucion
@@ -40,16 +40,20 @@ class DistribucionSimpleSerializer(serializers.ModelSerializer):
             "fecha",
             "fecha_creacion",
             "producto",
+            "producto_detalles",
         ]
 
 
 class BodegaSerializer(BodegaSimpleSerializer):
-    distribuciones = DistribucionSimpleSerializer(many=True, read_only=True)
+    distribuciones_detalles = DistribucionSimpleSerializer(
+        source="distribuciones", many=True, read_only=True
+    )
 
     class Meta:
         model = Bodega
         fields = BodegaSimpleSerializer.Meta.fields + [
             "distribuciones",
+            "distribuciones_detalles",
         ]
 
 
@@ -60,7 +64,7 @@ class DistribucionSerializer(DistribucionSimpleSerializer):
 
     class Meta:
         model = Distribucion
-        fields = [
+        fields = DistribucionSimpleSerializer.Meta.fields + [
             "bodegas",
             "bodegas_detalles",
         ]
