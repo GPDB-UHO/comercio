@@ -16,6 +16,8 @@ import NotificationsIcon from "@material-ui/icons/NotificationsOutlined";
 import InputIcon from "@material-ui/icons/Input";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+import { axios } from "helpers";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: "none",
@@ -40,6 +42,7 @@ const Topbar = (props) => {
   function handleLogout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    axios.defaults.headers["Authorization"] = "";
     history.push("/login");
   }
   return (
