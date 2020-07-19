@@ -36,10 +36,10 @@ class Bodega(models.Model):
 
 
 class Distribucion(models.Model):
-    cantidad = models.IntegerField()
+    cantidad = models.PositiveIntegerField()
 
-    repartido = models.IntegerField(editable=False, default=0)
-    sobrante = models.IntegerField(editable=False, default=0)
+    repartido = models.PositiveIntegerField()
+    sobrante = models.PositiveIntegerField()
 
     fecha = models.DateField()
     fecha_creacion = models.DateTimeField(auto_now=True)

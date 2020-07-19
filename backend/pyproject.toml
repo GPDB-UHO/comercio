@@ -11,6 +11,7 @@ djangorestframework = "^3.11.0"
 psycopg2 = "^2.8.5"
 django-filter = "^2.3.0"
 djangorestframework-simplejwt = "^4.4.0"
+django-cors-headers = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
