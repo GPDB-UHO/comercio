@@ -51,17 +51,29 @@ const Distributions = (props) => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Id del Producto</TableCell>
-                  <TableCell>Nombre</TableCell>
-                  <TableCell>Notas</TableCell>
+                  <TableCell>Id</TableCell>
+                  <TableCell>Cantidad</TableCell>
+                  <TableCell>Repartido</TableCell>
+                  <TableCell>Sobrante</TableCell>
+                  <TableCell>Fecha</TableCell>
+                  <TableCell>Producto</TableCell>
+                  <TableCell>Bodegas</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {(data?.results || []).map((product) => (
-                  <TableRow hover key={product.id}>
-                    <TableCell>{product.id}</TableCell>
-                    <TableCell>{product.nombre}</TableCell>
-                    <TableCell>{product.notas}</TableCell>
+                {(data?.results || []).map((dist) => (
+                  <TableRow hover key={dist.id}>
+                    <TableCell>{dist.id}</TableCell>
+                    <TableCell>{dist.cantidad}</TableCell>
+                    <TableCell>{dist.repartido}</TableCell>
+                    <TableCell>{dist.sobrante}</TableCell>
+                    <TableCell>{dist.fecha}</TableCell>
+                    <TableCell>{dist.producto_detalles.nombre}</TableCell>
+                    <TableCell>
+                      {dist.bodegas_detalles
+                        .map((item) => item.nombre)
+                        .join(", ")}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -42,6 +42,7 @@ export default function AddDistribution(props) {
     cantidad: 0,
     repartido: 0,
     sobrante: 0,
+    fech: null,
   });
   const [errors, setErrors] = useData({});
 
@@ -50,9 +51,8 @@ export default function AddDistribution(props) {
   function handleAddDistribution(data) {
     addDistribution(data)
       .then((response) => {
-        console.log(response);
-        // props.onClose();
-        // props.onAddDistribution();
+        props.onClose();
+        props.onAddDistribution();
       })
       .catch((error) => {
         setErrors(error.response.data);
@@ -94,6 +94,65 @@ export default function AddDistribution(props) {
       <DialogContent classes={{ root: classes.root }}>
         <Grid container direction="column" spacing={3}>
           <Grid item>
+            <TextField
+              id="cantidad"
+              label="Cantidad"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "cantidad")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.cantidad}
+              error={errors.cantidad}
+              helperText={errors.cantidad}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              id="repartido"
+              label="Repartido"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "repartido")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.repartido}
+              error={errors.repartido}
+              helperText={errors.repartido}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              id="sobrante"
+              label="Sobrante"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "sobrante")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.sobrante}
+              error={errors.sobrante}
+              helperText={errors.sobrante}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              id="fecha"
+              label="Fecha"
+              type="date"
+              onChange={(evt) => handleChangeField(evt.target.value, "fecha")}
+              variant="outlined"
+              fullWidth
+              value={data.fecha}
+              error={errors.fecha}
+              InputLabelProps={{ shrink: true }}
+              helperText={errors.fecha}
+            />
+          </Grid>
+          <Grid item>
             <Autocomplete
               id="select-product"
               open={toggleProduct}
@@ -111,6 +170,8 @@ export default function AddDistribution(props) {
                   {...params}
                   label="Producto"
                   variant="outlined"
+                  error={errors.bodegas}
+                  helperText={errors.bodegas}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
@@ -150,6 +211,8 @@ export default function AddDistribution(props) {
                   {...params}
                   label="Bodega"
                   variant="outlined"
+                  error={errors.producto}
+                  helperText={errors.producto}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
@@ -163,51 +226,6 @@ export default function AddDistribution(props) {
                   }}
                 />
               )}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="cantidad"
-              label="Cantidad"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(parseInt(evt.target.value), "cantidad")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.cantidad}
-              error={errors.nombre}
-              helperText={errors.nombre}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="repartido"
-              label="Repartido"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(parseInt(evt.target.value), "repartido")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.repartido}
-              error={errors.nombre}
-              helperText={errors.nombre}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="sobrante"
-              label="Sobrante"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(parseInt(evt.target.value), "sobrante")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.sobrante}
-              error={errors.nombre}
-              helperText={errors.nombre}
             />
           </Grid>
         </Grid>
