@@ -17,7 +17,7 @@ export function LoginProvider({ children }) {
       setState({ status: response.status });
     }
     verifyAccessToken();
-  }, []);
+  }, [setState]);
 
   return (
     <LoginContext.Provider

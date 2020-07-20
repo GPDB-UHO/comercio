@@ -1,41 +1,13 @@
 import React, { useState } from "react";
-import {
-  Link as RouterLink,
-  withRouter,
-  useLocation,
-  useHistory,
-} from "react-router-dom";
+import { withRouter, useLocation, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import validate from "validate.js";
 import { makeStyles } from "@material-ui/styles";
-import {
-  Grid,
-  Button,
-  IconButton,
-  TextField,
-  Link,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Button, TextField, Typography } from "@material-ui/core";
 
 import Alert from "@material-ui/lab/Alert";
 import { useData, createToken, axios } from "helpers";
 import { useLoginContext } from "contexts";
 
-const schema = {
-  email: {
-    presence: { allowEmpty: false, message: "is required" },
-    email: true,
-    length: {
-      maximum: 64,
-    },
-  },
-  password: {
-    presence: { allowEmpty: false, message: "is required" },
-    length: {
-      maximum: 128,
-    },
-  },
-};
 
 const useStyles = makeStyles((theme) => ({
   textField: {

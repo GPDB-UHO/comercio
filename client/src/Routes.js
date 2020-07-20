@@ -9,15 +9,8 @@ import {
   Nbhd as NbhdView,
   ProductList as ProductListView,
   Distributions as DistributionsView,
-  // UserList as UserListView,
-  // Typography as TypographyView,
-  // Icons as IconsView,
-  // Account as AccountView,
-  // Settings as SettingsView,
-  // SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
-  Nbhd,
 } from "./views";
 
 function PrivateRouteWithMainLayout({ children, ...rest }) {
@@ -32,18 +25,18 @@ const Routes = () => {
   return (
     <Switch>
       <RouteWithLayout
+        component={DashboardView}
+        exact
+        layout={MainLayout}
+        path="/"
+      />
+      <RouteWithLayout
         component={SignInView}
         exact
         layout={MinimalLayout}
         path="/login"
       />
-      <Redirect exact from="/" to="/dashboard" />
-      <RouteWithLayout
-        component={DashboardView}
-        exact
-        layout={MainLayout}
-        path="/dashboard"
-      />
+
       <PrivateRouteWithMainLayout path="/nbhd">
         <NbhdView />
       </PrivateRouteWithMainLayout>
@@ -53,6 +46,7 @@ const Routes = () => {
       <PrivateRouteWithMainLayout path="/distributions">
         <DistributionsView />
       </PrivateRouteWithMainLayout>
+
       <RouteWithLayout
         component={NotFoundView}
         exact
