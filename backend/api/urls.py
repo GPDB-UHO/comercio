@@ -1,19 +1,16 @@
 from django.urls import include, path
 
 from rest_framework import routers
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView
-
-)
+from rest_framework_simplejwt.views import TokenRefreshView
 
 from .views import (
-    GraficaDiasSinProductoOficodaView,
+    GraficaDiasSinProductoView,
     GraficaDiasSinProductoBodegaView,
     GraficaCantidadProductoView,
 )
 from .viewsets import (
+    MyTokenObtainPairView,
+    MyTokenVerifyView,
     OficodaViewset,
     RepartoViewset,
     BodegaViewset,
@@ -36,9 +33,9 @@ urlpatterns = [
         include(
             [
                 path(
-                    "dias-sin-producto-oficoda/<int:producto>",
-                    GraficaDiasSinProductoOficodaView.as_view(),
-                    name="grafica-dias-sin-producto-oficoda",
+                    "dias-sin-producto/<int:producto>",
+                    GraficaDiasSinProductoView.as_view(),
+                    name="grafica-dias-sin-producto",
                 ),
                 path(
                     "dias-sin-producto-bodega/<int:producto>/<int:oficoda>",
@@ -53,7 +50,7 @@ urlpatterns = [
             ],
         ),
     ),
-    path("token/", TokenObtainPairView.as_view(), name="token-obtain"),
+    path("token/", MyTokenObtainPairView.as_view(), name="token-obtain"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token-refresh"),
-    path("token/verify/", TokenVerifyView.as_view(), name="token-verify"),
+    path("token/verify/", MyTokenVerifyView.as_view(), name="token-verify"),
 ]

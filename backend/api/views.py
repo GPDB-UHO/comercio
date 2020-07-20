@@ -8,15 +8,15 @@ from rest_framework.response import Response
 from .models import Oficoda, Reparto, Bodega, Distribucion, Producto
 
 
-class GraficaDiasSinProductoOficodaView(views.APIView):
+class GraficaDiasSinProductoView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, producto):
         data = []
         now = timezone.now()
-        for oficoda in Oficoda.objects.all():
+        for bodega in Bodega.objects.exclude(distribuciones=None):
             ultima_distribucion = (
-                Distribucion.objects.filter(bodegas__oficoda=oficoda, producto=producto)
+                Distribucion.objects.filter(producto=producto, bodegas=bodega)
                 .annotate(
                     dias_ultima_distribucion=Value(now, output_field=DateField())
                     - F("fecha")
@@ -24,20 +24,23 @@ class GraficaDiasSinProductoOficodaView(views.APIView):
                 .order_by("-fecha")
                 .first()
             )
-            data.append(
-                {
-                    "id": oficoda.id,
-                    "nombre": oficoda.nombre,
-                    "reparto": oficoda.reparto.nombre,
-                    "fecha_ultima_distribucion": ultima_distribucion.fecha
-                    if ultima_distribucion
-                    else None,
-                    "dias_ultima_distribucion": ultima_distribucion.dias_ultima_distribucion.days
-                    if ultima_distribucion
-                    else None,
-                }
-            )
-        return Response(data)
+            if ultima_distribucion:
+                data.append(
+                    {
+                        "id": bodega.id,
+                        "unidad": bodega.nombre,
+                        "nombre": bodega.nombre,
+                        "oficoda": bodega.oficoda.nombre,
+                        "reparto": bodega.oficoda.reparto.nombre,
+                        "fecha_ultima_distribucion": ultima_distribucion.fecha
+                        if ultima_distribucion
+                        else None,
+                        "dias_ultima_distribucion": ultima_distribucion.dias_ultima_distribucion.days
+                        if ultima_distribucion
+                        else None,
+                    }
+                )
+        return Response(sorted(data, key = lambda i: i["dias_ultima_distribucion"]))
 
 
 class GraficaDiasSinProductoBodegaView(views.APIView):

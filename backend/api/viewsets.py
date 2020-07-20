@@ -1,14 +1,25 @@
 from django.db.models import Prefetch
 from rest_framework import viewsets, permissions
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView
 
 from .models import Oficoda, Reparto, Bodega, Distribucion, Producto
 from .serializers import (
+    MyTokenObtainPairSerializer,
+    MyTokenVerifySerializer,
     OficodaSerializer,
     RepartoSerializer,
     BodegaSerializer,
     DistribucionSerializer,
     ProductoSerializer,
 )
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+
+class MyTokenVerifyView(TokenVerifyView):
+    serializer_class = MyTokenVerifySerializer
 
 
 class OficodaViewset(viewsets.ReadOnlyModelViewSet):

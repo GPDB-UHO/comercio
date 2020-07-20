@@ -13,8 +13,11 @@ import {
 } from "@material-ui/core";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
-import { useData } from "helpers";
+import { useData, fetchDaysWithoutProducts, fetchProducts } from "helpers";
 import { data1, data2, options } from "./chart";
+import { useAsync } from "react-async";
+import { async } from "validate.js";
+import palette from "theme/palette";
 
 const useStyles = makeStyles((theme) => ({
   filterTexfields: {
@@ -33,13 +36,32 @@ const useStyles = makeStyles((theme) => ({
 
 const LatestDeliveries = () => {
   const [state, setState] = useData({
-    first_product: "Pollo",
+    first_product: 10,
     second_product: "Aceite",
     days: 15,
   });
+  const daysWithoutProducts = useAsync({
+    promiseFn: fetchDaysWithoutProducts,
+    producto: state.first_product,
+    watch: state.first_product,
+  });
+  const products = useAsync({
+    promiseFn: fetchProducts,
+  });
 
   const classes = useStyles();
-
+  const chartData = {
+    labels: daysWithoutProducts.data?.data.map((item) => item.nombre),
+    datasets: [
+      {
+        label: "Días sin entregas",
+        backgroundColor: palette.primary.main,
+        data: daysWithoutProducts.data?.data.map(
+          (item) => item.dias_ultima_distribucion
+        ),
+      },
+    ],
+  };
   return (
     <>
       <Card>
@@ -53,30 +75,36 @@ const LatestDeliveries = () => {
                 style={{ width: "15ch" }}
                 value={state.first_product}
               >
-                <MenuItem value="Arroz">Arroz</MenuItem>
-                <MenuItem value="Frijoles">Frijoles</MenuItem>
-                <MenuItem value="Pollo">Pollo</MenuItem>
+                {(products.data?.results || []).map((product) => (
+                  <MenuItem key={product.id} value={product.id}>
+                    {product.nombre}
+                  </MenuItem>
+                ))}
               </TextField>
             </div>
           }
-          title={`Días sin entregas de ${state.first_product} `}
+          title={`Días sin entregas de ${
+            (products.data?.results || []).find(
+              (item) => item.id == state.first_product
+            )?.nombre
+          } `}
         />
         <Divider />
         <CardContent>
           <div className={classes.chartContainer}>
-            <Bar data={data1} options={options} />
+            <Bar data={chartData} options={options} />
           </div>
         </CardContent>
         <Divider />
-        <CardActions className={classes.actions}>
+        {/* <CardActions className={classes.actions}>
           <Button color="primary" size="small" variant="text">
             Mostrar más datos <ArrowRightIcon />
           </Button>
-        </CardActions>
+        </CardActions> */}
       </Card>
       <br />
       <br />
-      <Card>
+      {/* <Card>
         <CardHeader
           action={
             <div className={classes.filterTexfields}>
@@ -121,7 +149,7 @@ const LatestDeliveries = () => {
             Mostrar más datos <ArrowRightIcon />
           </Button>
         </CardActions>
-      </Card>
+      </Card> */}
     </>
   );
 };

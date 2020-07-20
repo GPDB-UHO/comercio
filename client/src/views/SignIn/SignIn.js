@@ -46,6 +46,7 @@ const SignIn = (props) => {
         setLoginState({ status: 200 });
         localStorage.setItem("access_token", responseToken.data.access);
         localStorage.setItem("refresh_token", responseToken.data.refresh);
+        localStorage.setItem("user", JSON.stringify(responseToken.data.user));
         axios.defaults.headers[
           "Authorization"
         ] = `Bearer ${responseToken.data.access}`;

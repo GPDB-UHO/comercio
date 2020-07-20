@@ -64,3 +64,11 @@ export const fetchBodegas = async () => {
   const response = await axiosInstance.get("bodega");
   return response.data;
 };
+
+// Retorna la cantidad de días sin entregas de un producto X en una oficoda Y
+export async function fetchDaysWithoutProducts({ producto }) {
+  const response = await axiosInstance.get(
+    `graficas/dias-sin-producto/${producto}`
+  );
+  return response;
+}

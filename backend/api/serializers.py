@@ -1,6 +1,32 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import (
+    TokenObtainPairSerializer,
+    TokenVerifySerializer,
+)
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Oficoda, Reparto, Bodega, Distribucion, Producto
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+        data["refresh"] = str(refresh)
+        data["access"] = str(refresh.access_token)
+        data["user"] = {"username": self.user.username}
+        return data
+
+
+class MyTokenVerifySerializer(TokenVerifySerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        return data
 
 
 class ProductoSerializer(serializers.ModelSerializer):
