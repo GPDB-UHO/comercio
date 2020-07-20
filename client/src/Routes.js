@@ -25,18 +25,14 @@ const Routes = () => {
   return (
     <Switch>
       <RouteWithLayout
-        component={DashboardView}
-        exact
-        layout={MainLayout}
-        path="/"
-      />
-      <RouteWithLayout
         component={SignInView}
         exact
         layout={MinimalLayout}
         path="/login"
       />
-
+      <PrivateRouteWithMainLayout exact path="/">
+        <DashboardView />
+      </PrivateRouteWithMainLayout>
       <PrivateRouteWithMainLayout path="/nbhd">
         <NbhdView />
       </PrivateRouteWithMainLayout>

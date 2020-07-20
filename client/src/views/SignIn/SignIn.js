@@ -52,7 +52,7 @@ const SignIn = (props) => {
         ] = `Bearer ${responseToken.data.access}`;
         window.setTimeout(() => {
           history.push(location.state?.from.pathname || "/");
-        }, 2000);
+        }, 1000);
         break;
       case 400:
         setFieldErrors(responseToken.data);
