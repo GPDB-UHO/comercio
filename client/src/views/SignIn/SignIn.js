@@ -35,6 +35,7 @@ const SignIn = (props) => {
   const handleChange = (field, value) => {
     setFieldErrors({ [field]: null });
     setState({ [field]: value });
+    setErrorAlert(null);
   };
 
   const handleSignIn = async (event) => {
