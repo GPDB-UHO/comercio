@@ -15,11 +15,11 @@ const browserHistory = createBrowserHistory();
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LoginProvider>
-        <Router history={browserHistory}>
+      <Router history={browserHistory}>
+        <LoginProvider>
           <Routes />
-        </Router>
-      </LoginProvider>
+        </LoginProvider>
+      </Router>
     </ThemeProvider>
   );
 }
