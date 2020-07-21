@@ -232,7 +232,7 @@ export default function AddDistribution(props) {
       </DialogContent>
       <DialogActions>
         <Button color="primary" onClick={() => handleAddDistribution(data)}>
-          Agregar producto
+          Agregar distribución
         </Button>
         <Button color="error" onClick={props.onClose}>
           Cancelar
