@@ -20,20 +20,18 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function EditProduct(props) {
-  const [data, setData] = useData({ name: "", notes: "" });
+  const initialData = { name: "", notes: "" };
+  const [data, setData] = useData(
+    props.instance
+      ? { name: props.instance.nombre, notes: props.instance.notas }
+      : initialData
+  );
   const [errors, setErrors] = useData({});
 
   const classes = useStyles();
 
-  useEffect(() => {
-    if (!props.new) {
-      console.log(props.instance, "<<<");
-      setData({name: props.instance.nombre, notes: props.instance.notas});
-    }
-  }, [props.instance]);
-
   function handleSubmit(data) {
-    const newData = props.new ? data : {...data, id: props.instance.id};
+    const newData = props.new ? data : { ...data, id: props.instance.id };
     const func = props.new ? addProduct : editProduct;
     func(newData)
       .then(() => {
@@ -53,7 +51,9 @@ export default function EditProduct(props) {
       fullWidth
       disableBackdropClick
     >
-      <DialogTitle>{props.new ? "Agregar producto" : "Editar producto"}</DialogTitle>
+      <DialogTitle>
+        {props.new ? "Agregar producto" : "Editar producto"}
+      </DialogTitle>
       <DialogContent classes={{ root: classes.root }}>
         <Grid container direction="column" spacing={3}>
           <Grid item>

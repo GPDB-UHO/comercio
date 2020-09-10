@@ -14,20 +14,19 @@ import {
   TableRow,
 } from "@material-ui/core";
 
-import { fetchProducts, useToggleState } from "helpers";
+import { fetchProducts, useToggleState, useTargetAction } from "helpers";
 import EditProduct from "./EditProductModal";
 
 const ProductList = (props) => {
   const { data, reload } = useAsync({ promiseFn: fetchProducts });
-  const [open, openModal, closeModal] = useToggleState();
-  const [openEdit, openModalEdit, closeModalEdit] = useToggleState();
-
+  const [action, target, handleAction] = useTargetAction();
   return (
     <div>
       <EditProduct
-        new={true}
-        open={open}
-        onClose={closeModal}
+        new={action === "new"}
+        open={["new", "edit"].includes(action)}
+        instance={target}
+        onClose={handleAction}
         onAddProduct={() => reload()}
       />
       <Card>
@@ -37,7 +36,7 @@ const ProductList = (props) => {
               color="primary"
               size="small"
               variant="outlined"
-              onClick={openModal}
+              onClick={() => handleAction("new")}
             >
               Agregar producto
             </Button>
@@ -53,7 +52,7 @@ const ProductList = (props) => {
                   <TableCell>Id del Producto</TableCell>
                   <TableCell>Nombre</TableCell>
                   <TableCell>Notas</TableCell>
-                  <TableCell/>
+                  <TableCell />
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -63,18 +62,11 @@ const ProductList = (props) => {
                     <TableCell>{product.nombre}</TableCell>
                     <TableCell>{product.notas}</TableCell>
                     <TableCell>
-                      <EditProduct
-                        new={false}
-                        instance={product}
-                        open={openEdit}
-                        onClose={closeModalEdit}
-                        onAddProduct={() => reload()}
-                      />
                       <Button
                         color="primary"
                         size="small"
                         variant="outlined"
-                        onClick={openModalEdit}
+                        onClick={() => handleAction("edit", product)}
                       >
                         Editar
                       </Button>
