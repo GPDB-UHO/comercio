@@ -15,15 +15,17 @@ import {
 } from "@material-ui/core";
 
 import { fetchProducts, useToggleState } from "helpers";
-import AddProduct from "./AddProductModal";
+import EditProduct from "./EditProductModal";
 
 const ProductList = (props) => {
   const { data, reload } = useAsync({ promiseFn: fetchProducts });
   const [open, openModal, closeModal] = useToggleState();
+  const [openEdit, openModalEdit, closeModalEdit] = useToggleState();
 
   return (
     <div>
-      <AddProduct
+      <EditProduct
+        new={true}
         open={open}
         onClose={closeModal}
         onAddProduct={() => reload()}
@@ -51,6 +53,7 @@ const ProductList = (props) => {
                   <TableCell>Id del Producto</TableCell>
                   <TableCell>Nombre</TableCell>
                   <TableCell>Notas</TableCell>
+                  <TableCell/>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -59,6 +62,23 @@ const ProductList = (props) => {
                     <TableCell>{product.id}</TableCell>
                     <TableCell>{product.nombre}</TableCell>
                     <TableCell>{product.notas}</TableCell>
+                    <TableCell>
+                      <EditProduct
+                        new={false}
+                        instance={product}
+                        open={openEdit}
+                        onClose={closeModalEdit}
+                        onAddProduct={() => reload()}
+                      />
+                      <Button
+                        color="primary"
+                        size="small"
+                        variant="outlined"
+                        onClick={openModalEdit}
+                      >
+                        Editar
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -44,6 +44,14 @@ export const addProduct = async ({ name, notes }) => {
   return response.data;
 };
 
+export const editProduct = async ({ id, name, notes }) => {
+  const response = await axiosInstance.patch(`producto/${id}`, {
+    nombre: name,
+    notas: notes,
+  });
+  return response.data;
+};
+
 export const fetchNbhd = async () => {
   const response = await axiosInstance.get("reparto");
   return response.data;

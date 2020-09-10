@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -10,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-import { addProduct, useData } from "helpers";
+import { addProduct, editProduct, useData } from "helpers";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -18,14 +19,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function AddProduct(props) {
+export default function EditProduct(props) {
   const [data, setData] = useData({ name: "", notes: "" });
   const [errors, setErrors] = useData({});
 
   const classes = useStyles();
 
-  function handleAddProduct(data) {
-    addProduct(data)
+  useEffect(() => {
+    if (!props.new) {
+      console.log(props.instance, "<<<");
+      setData({name: props.instance.nombre, notes: props.instance.notas});
+    }
+  }, [props.instance]);
+
+  function handleSubmit(data) {
+    const newData = props.new ? data : {...data, id: props.instance.id};
+    const func = props.new ? addProduct : editProduct;
+    func(newData)
       .then(() => {
         props.onClose();
         props.onAddProduct();
@@ -43,7 +53,7 @@ export default function AddProduct(props) {
       fullWidth
       disableBackdropClick
     >
-      <DialogTitle>Agregar Producto</DialogTitle>
+      <DialogTitle>{props.new ? "Agregar producto" : "Editar producto"}</DialogTitle>
       <DialogContent classes={{ root: classes.root }}>
         <Grid container direction="column" spacing={3}>
           <Grid item>
@@ -75,8 +85,8 @@ export default function AddProduct(props) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" onClick={() => handleAddProduct(data)}>
-          Agregar producto
+        <Button color="primary" onClick={() => handleSubmit(data)}>
+          {props.new ? "Agregar producto" : "Guardar"}
         </Button>
         <Button color="error" onClick={props.onClose}>
           Cancelar
