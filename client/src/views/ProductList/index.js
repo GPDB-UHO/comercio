@@ -16,6 +16,7 @@ import {
 
 import { fetchProducts, useToggleState, useTargetAction } from "helpers";
 import EditProduct from "./EditProductModal";
+import DeleteProduct from "./DeleteProductModal";
 
 const ProductList = (props) => {
   const { data, reload } = useAsync({ promiseFn: fetchProducts });
@@ -25,10 +26,18 @@ const ProductList = (props) => {
       {!!["new", "edit"].includes(action) && (
         <EditProduct
           new={action === "new"}
-          open={["new", "edit"].includes(action)}
+          open={true}
           instance={target}
           onClose={handleAction}
           onAddProduct={() => reload()}
+        />
+      )}
+      {action === "delete" && (
+        <DeleteProduct
+          open={true}
+          instance={target}
+          onClose={handleAction}
+          onSubmit={() => reload()}
         />
       )}
       <Card>
@@ -71,6 +80,15 @@ const ProductList = (props) => {
                         onClick={() => handleAction("edit", product)}
                       >
                         Editar
+                      </Button>
+                      {" "}
+                      <Button
+                        color="secondary"
+                        size="small"
+                        variant="outlined"
+                        onClick={() => handleAction("delete", product)}
+                      >
+                        Eliminar
                       </Button>
                     </TableCell>
                   </TableRow>

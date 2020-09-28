@@ -52,6 +52,11 @@ export const editProduct = async ({ id, name, notes }) => {
   return response.data;
 };
 
+export const deleteProduct = async (id) => {
+  const response = await axiosInstance.delete(`producto/${id}/`);
+  return response.data;
+};
+
 export const fetchNbhd = async () => {
   const response = await axiosInstance.get("reparto");
   return response.data;
