@@ -51,6 +51,8 @@ class Distribucion(models.Model):
     def __str__(self):
         return "{} - {} - {}".format(self.producto.nombre, self.cantidad, self.fecha)
 
+    class Meta:
+        ordering = ["-pk"]
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=255)
@@ -59,3 +61,5 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+    class Meta:
+        ordering = ["-pk"]

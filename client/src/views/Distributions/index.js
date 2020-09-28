@@ -14,19 +14,21 @@ import {
   TableRow,
 } from "@material-ui/core";
 
-import { fetchDistributions, useToggleState } from "helpers";
+import {fetchDistributions, useTargetAction} from "helpers";
 import AddDistributionModal from "./AddDistributionModal";
 
 const Distributions = (props) => {
   const { data, reload } = useAsync({ promiseFn: fetchDistributions });
-  const [open, openModal, closeModal] = useToggleState();
+  const [action, target, handleAction] = useTargetAction();
 
   return (
     <div>
-      {open && (
+      {!!action && (
         <AddDistributionModal
           open
-          onClose={closeModal}
+          new={action=="new"}
+          instance={target}
+          onClose={handleAction}
           onAddDistribution={() => reload()}
         />
       )}
@@ -38,7 +40,7 @@ const Distributions = (props) => {
               color="primary"
               size="small"
               variant="outlined"
-              onClick={openModal}
+              onClick={() => handleAction("new")}
             >
               Agregar distribución
             </Button>
@@ -58,6 +60,7 @@ const Distributions = (props) => {
                   <TableCell>Fecha</TableCell>
                   <TableCell>Producto</TableCell>
                   <TableCell>Bodegas</TableCell>
+                  <TableCell/>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -73,6 +76,16 @@ const Distributions = (props) => {
                       {dist.bodegas_detalles
                         .map((item) => item.nombre)
                         .join(", ")}
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        color="secondary"
+                        size="small"
+                        variant="outlined"
+                        onClick={() => handleAction("edit", dist)}
+                      >
+                        Editar
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}

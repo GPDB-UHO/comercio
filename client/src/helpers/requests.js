@@ -68,8 +68,13 @@ export const fetchDistributions = async () => {
 };
 
 export const addDistribution = async (data) => {
-  console.log(data);
+  // console.log(data);
   const response = await axiosInstance.post("distribucion/", data);
+  return response.data;
+};
+
+export const editDistribution = async ( data ) => {
+  const response = await axiosInstance.patch(`distribucion/${data.id}/`, data);
   return response.data;
 };
 
