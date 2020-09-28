@@ -24,7 +24,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(() => ({
   root: {
-    minHeight: "200px",
+    minHeight: "35vh",
   },
 }));
 
@@ -78,7 +78,7 @@ export default function AddDistribution(props) {
   }
 
   function handleChangeField(value, field) {
-    console.log(field, value);
+    // console.log(field, value);
     setData({ [field]: value });
   }
 
@@ -92,53 +92,8 @@ export default function AddDistribution(props) {
     >
       <DialogTitle>Agregar distribución</DialogTitle>
       <DialogContent classes={{ root: classes.root }}>
-        <Grid container direction="column" spacing={3}>
-          <Grid item>
-            <TextField
-              id="cantidad"
-              label="Cantidad"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(evt.target.value, "cantidad")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.cantidad}
-              error={errors.cantidad}
-              helperText={errors.cantidad}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="repartido"
-              label="Repartido"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(evt.target.value, "repartido")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.repartido}
-              error={errors.repartido}
-              helperText={errors.repartido}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="sobrante"
-              label="Sobrante"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(evt.target.value, "sobrante")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.sobrante}
-              error={errors.sobrante}
-              helperText={errors.sobrante}
-            />
-          </Grid>
-          <Grid item>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
             <TextField
               id="fecha"
               label="Fecha"
@@ -152,7 +107,7 @@ export default function AddDistribution(props) {
               helperText={errors.fecha}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={6}>
             <Autocomplete
               id="select-product"
               open={toggleProduct}
@@ -170,8 +125,8 @@ export default function AddDistribution(props) {
                   {...params}
                   label="Producto"
                   variant="outlined"
-                  error={errors.bodegas}
-                  helperText={errors.bodegas}
+                  error={errors.producto}
+                  helperText={errors.producto}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
@@ -187,7 +142,52 @@ export default function AddDistribution(props) {
               )}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={4}>
+            <TextField
+              id="cantidad"
+              label="Cantidad"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "cantidad")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.cantidad}
+              error={errors.cantidad}
+              helperText={errors.cantidad}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              id="repartido"
+              label="Repartido"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "repartido")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.repartido}
+              error={errors.repartido}
+              helperText={errors.repartido}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              id="sobrante"
+              label="Sobrante"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "sobrante")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.sobrante}
+              error={errors.sobrante}
+              helperText={errors.sobrante}
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Autocomplete
               id="select-bodegas"
               open={toggleBodega}
@@ -211,8 +211,8 @@ export default function AddDistribution(props) {
                   {...params}
                   label="Bodega"
                   variant="outlined"
-                  error={errors.producto}
-                  helperText={errors.producto}
+                  error={errors.bodegas}
+                  helperText={errors.bodegas}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
