@@ -6,6 +6,15 @@ export function useToggleState() {
   return [state, () => setState(true), () => setState(false)];
 }
 
+export function useTargetAction(action = null, item = null) {
+  const [target, setTarget] = useState({ action, item });
+  return [
+    target.action,
+    target.item,
+    (action = null, item = null) => setTarget({ action, item }),
+  ];
+}
+
 export function useData(initial) {
   return useReducer(
     (oldData, newData) => ({ ...oldData, ...newData }),
