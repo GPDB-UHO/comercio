@@ -16,6 +16,7 @@ import {
 
 import {fetchDistributions, useTargetAction} from "helpers";
 import AddDistributionModal from "./AddDistributionModal";
+import DeleteDistribution from "./DeleteDistributionModal";
 
 const Distributions = (props) => {
   const { data, reload } = useAsync({ promiseFn: fetchDistributions });
@@ -23,10 +24,18 @@ const Distributions = (props) => {
 
   return (
     <div>
-      {!!action && (
+      {["new", "edit"].includes(action) && (
         <AddDistributionModal
           open
           new={action=="new"}
+          instance={target}
+          onClose={handleAction}
+          onAddDistribution={() => reload()}
+        />
+      )}
+      {action == "delete" && (
+        <DeleteDistribution
+          open
           instance={target}
           onClose={handleAction}
           onAddDistribution={() => reload()}
@@ -79,12 +88,21 @@ const Distributions = (props) => {
                     </TableCell>
                     <TableCell>
                       <Button
-                        color="secondary"
+                        color="primary"
                         size="small"
                         variant="outlined"
                         onClick={() => handleAction("edit", dist)}
                       >
                         Editar
+                      </Button>
+                      {" "}
+                      <Button
+                        color="secondary"
+                        size="small"
+                        variant="outlined"
+                        onClick={() => handleAction("delete", dist)}
+                      >
+                        Eliminar
                       </Button>
                     </TableCell>
                   </TableRow>

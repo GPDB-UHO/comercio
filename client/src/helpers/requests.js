@@ -78,6 +78,11 @@ export const editDistribution = async ( data ) => {
   return response.data;
 };
 
+export const deleteDistribution = async (id) => {
+  const response = await axiosInstance.delete(`distribucion/${id}/`);
+  return response.data;
+};
+
 export const fetchBodegas = async () => {
   const response = await axiosInstance.get("bodega");
   return response.data;
