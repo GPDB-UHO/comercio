@@ -44,6 +44,19 @@ export const addProduct = async ({ name, notes }) => {
   return response.data;
 };
 
+export const editProduct = async ({ id, name, notes }) => {
+  const response = await axiosInstance.patch(`producto/${id}/`, {
+    nombre: name,
+    notas: notes,
+  });
+  return response.data;
+};
+
+export const deleteProduct = async (id) => {
+  const response = await axiosInstance.delete(`producto/${id}/`);
+  return response.data;
+};
+
 export const fetchNbhd = async () => {
   const response = await axiosInstance.get("reparto");
   return response.data;
@@ -55,8 +68,18 @@ export const fetchDistributions = async () => {
 };
 
 export const addDistribution = async (data) => {
-  console.log(data);
+  // console.log(data);
   const response = await axiosInstance.post("distribucion/", data);
+  return response.data;
+};
+
+export const editDistribution = async ( data ) => {
+  const response = await axiosInstance.patch(`distribucion/${data.id}/`, data);
+  return response.data;
+};
+
+export const deleteDistribution = async (id) => {
+  const response = await axiosInstance.delete(`distribucion/${id}/`);
   return response.data;
 };
 

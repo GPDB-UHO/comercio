@@ -12,7 +12,7 @@ import {
 import { makeStyles } from "@material-ui/styles";
 
 import {
-  addDistribution,
+  addDistribution, editDistribution,
   fetchBodegas,
   fetchProducts,
   useData,
@@ -24,7 +24,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles(() => ({
   root: {
-    minHeight: "200px",
+    minHeight: "35vh",
   },
 }));
 
@@ -43,13 +43,15 @@ export default function AddDistribution(props) {
     repartido: 0,
     sobrante: 0,
     fech: null,
+    ...props.instance,
   });
   const [errors, setErrors] = useData({});
 
   const classes = useStyles();
 
   function handleAddDistribution(data) {
-    addDistribution(data)
+    const func = props.new ? addDistribution : editDistribution;
+    func(data)
       .then((response) => {
         props.onClose();
         props.onAddDistribution();
@@ -78,7 +80,7 @@ export default function AddDistribution(props) {
   }
 
   function handleChangeField(value, field) {
-    console.log(field, value);
+    // console.log(field, value);
     setData({ [field]: value });
   }
 
@@ -90,55 +92,10 @@ export default function AddDistribution(props) {
       fullWidth
       disableBackdropClick
     >
-      <DialogTitle>Agregar distribución</DialogTitle>
+      <DialogTitle>{props.new ? "Agregar distribución" : "Editar distribución"}</DialogTitle>
       <DialogContent classes={{ root: classes.root }}>
-        <Grid container direction="column" spacing={3}>
-          <Grid item>
-            <TextField
-              id="cantidad"
-              label="Cantidad"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(evt.target.value, "cantidad")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.cantidad}
-              error={errors.cantidad}
-              helperText={errors.cantidad}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="repartido"
-              label="Repartido"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(evt.target.value, "repartido")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.repartido}
-              error={errors.repartido}
-              helperText={errors.repartido}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              id="sobrante"
-              label="Sobrante"
-              type="number"
-              onChange={(evt) =>
-                handleChangeField(evt.target.value, "sobrante")
-              }
-              variant="outlined"
-              fullWidth
-              value={data.sobrante}
-              error={errors.sobrante}
-              helperText={errors.sobrante}
-            />
-          </Grid>
-          <Grid item>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
             <TextField
               id="fecha"
               label="Fecha"
@@ -152,8 +109,9 @@ export default function AddDistribution(props) {
               helperText={errors.fecha}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={6}>
             <Autocomplete
+              defaultValue={props?.instance?.producto_detalles}
               id="select-product"
               open={toggleProduct}
               onOpen={handleOpenProducts}
@@ -170,8 +128,8 @@ export default function AddDistribution(props) {
                   {...params}
                   label="Producto"
                   variant="outlined"
-                  error={errors.bodegas}
-                  helperText={errors.bodegas}
+                  error={errors.producto}
+                  helperText={errors.producto}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
@@ -187,8 +145,54 @@ export default function AddDistribution(props) {
               )}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={4}>
+            <TextField
+              id="cantidad"
+              label="Cantidad"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "cantidad")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.cantidad}
+              error={errors.cantidad}
+              helperText={errors.cantidad}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              id="repartido"
+              label="Repartido"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "repartido")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.repartido}
+              error={errors.repartido}
+              helperText={errors.repartido}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              id="sobrante"
+              label="Sobrante"
+              type="number"
+              onChange={(evt) =>
+                handleChangeField(evt.target.value, "sobrante")
+              }
+              variant="outlined"
+              fullWidth
+              value={data.sobrante}
+              error={errors.sobrante}
+              helperText={errors.sobrante}
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Autocomplete
+              defaultValue={props?.instance?.bodegas_detalles}
               id="select-bodegas"
               open={toggleBodega}
               multiple
@@ -211,8 +215,8 @@ export default function AddDistribution(props) {
                   {...params}
                   label="Bodega"
                   variant="outlined"
-                  error={errors.producto}
-                  helperText={errors.producto}
+                  error={errors.bodegas}
+                  helperText={errors.bodegas}
                   InputProps={{
                     ...params.InputProps,
                     endAdornment: (
@@ -232,9 +236,9 @@ export default function AddDistribution(props) {
       </DialogContent>
       <DialogActions>
         <Button color="primary" onClick={() => handleAddDistribution(data)}>
-          Agregar distribución
+          {props.new ? "Agregar distribución" : "Guardar"}
         </Button>
-        <Button color="error" onClick={props.onClose}>
+        <Button color="error" onClick={() => props.onClose()}>
           Cancelar
         </Button>
       </DialogActions>

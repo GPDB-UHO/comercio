@@ -86,7 +86,7 @@ const LatestDeliveries = () => {
           title={`Días sin entregas de ${
             (products.data?.results || []).find(
               (item) => item.id == state.first_product
-            )?.nombre
+            )?.nombre || "determinado producto"
           } `}
         />
         <Divider />

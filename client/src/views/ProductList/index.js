@@ -14,20 +14,32 @@ import {
   TableRow,
 } from "@material-ui/core";
 
-import { fetchProducts, useToggleState } from "helpers";
-import AddProduct from "./AddProductModal";
+import { fetchProducts, useToggleState, useTargetAction } from "helpers";
+import EditProduct from "./EditProductModal";
+import DeleteProduct from "./DeleteProductModal";
 
 const ProductList = (props) => {
   const { data, reload } = useAsync({ promiseFn: fetchProducts });
-  const [open, openModal, closeModal] = useToggleState();
-
+  const [action, target, handleAction] = useTargetAction();
   return (
     <div>
-      <AddProduct
-        open={open}
-        onClose={closeModal}
-        onAddProduct={() => reload()}
-      />
+      {!!["new", "edit"].includes(action) && (
+        <EditProduct
+          new={action === "new"}
+          open={true}
+          instance={target}
+          onClose={handleAction}
+          onAddProduct={() => reload()}
+        />
+      )}
+      {action === "delete" && (
+        <DeleteProduct
+          open={true}
+          instance={target}
+          onClose={handleAction}
+          onSubmit={() => reload()}
+        />
+      )}
       <Card>
         <CardHeader
           action={
@@ -35,7 +47,7 @@ const ProductList = (props) => {
               color="primary"
               size="small"
               variant="outlined"
-              onClick={openModal}
+              onClick={() => handleAction("new")}
             >
               Agregar producto
             </Button>
@@ -51,6 +63,7 @@ const ProductList = (props) => {
                   <TableCell>Id del Producto</TableCell>
                   <TableCell>Nombre</TableCell>
                   <TableCell>Notas</TableCell>
+                  <TableCell />
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -59,6 +72,25 @@ const ProductList = (props) => {
                     <TableCell>{product.id}</TableCell>
                     <TableCell>{product.nombre}</TableCell>
                     <TableCell>{product.notas}</TableCell>
+                    <TableCell>
+                      <Button
+                        color="primary"
+                        size="small"
+                        variant="outlined"
+                        onClick={() => handleAction("edit", product)}
+                      >
+                        Editar
+                      </Button>
+                      {" "}
+                      <Button
+                        color="secondary"
+                        size="small"
+                        variant="outlined"
+                        onClick={() => handleAction("delete", product)}
+                      >
+                        Eliminar
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
